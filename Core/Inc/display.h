@@ -30,6 +30,23 @@ void setc(void);
 void setd(void);
 void setE(void);
 void setF(void);
+void setG(void);
+void setH(void);
+void seth(void);
+void setI(void);
+void setJ(void);
+void setL(void);
+void setn(void);
+void setO(void);
+void seto(void);
+void setP(void);
+void setq(void);
+void setr(void);
+void setS(void);
+void sett(void);
+void setU(void);
+void setu(void);
+void sety(void);
 
 void setK(void);
 void setM(void);
@@ -37,6 +54,19 @@ void setV(void);
 void setW(void);
 void setX(void);
 void setZ(void);
+
+void setOne(void);
+void setTwo(void);
+void setThree(void);
+void setFour(void);
+void setFive(void);
+void setSix(void);
+void setSeven(void);
+void setEight(void);
+void setNine(void);
+void setZero(void);
+
+void setDot(void);
 
 
 
