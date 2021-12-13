@@ -11,7 +11,7 @@ uint8_t displayTextPos = 0;
 uint8_t direction = 0;
 
 void updateDisplay(){
-	char displayString[] = "MICHAL MOLnAr 98352";
+	char displayString[] = "MICHAL_MOLnAr_98352";
 	for(int i = 1; i<5; i++){
 		switch(updateDigit){
 				case 1:
@@ -156,6 +156,9 @@ void displayLetter(char letter){
 			break;
 		case ' ':
 			resetAllSegments();
+			break;
+		case '_':
+			setLine();
 			break;
 
 
@@ -645,6 +648,17 @@ void setZero(void){
 	LL_GPIO_SetOutputPin(GPIOB, segmentG_Pin);
 }
 
+void setLine(void){
+	LL_GPIO_ResetOutputPin(GPIOB, segmentD_Pin);
+
+	LL_GPIO_SetOutputPin(GPIOA, segmentA_Pin);
+	LL_GPIO_SetOutputPin(GPIOA, segmentB_Pin);
+	LL_GPIO_SetOutputPin(GPIOA, segmentC_Pin);
+	LL_GPIO_SetOutputPin(GPIOA, segmentE_Pin);
+	LL_GPIO_SetOutputPin(GPIOA, segmentF_Pin);
+	LL_GPIO_SetOutputPin(GPIOB, segmentG_Pin);
+	LL_GPIO_SetOutputPin(GPIOB, segmentDP_Pin);
+}
 // and dot to end
 void setDot(void){
 	LL_GPIO_ResetOutputPin(GPIOB, segmentDP_Pin);

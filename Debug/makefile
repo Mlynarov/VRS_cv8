@@ -61,8 +61,8 @@ all: main-build
 main-build: VRS_cv8.elf secondary-outputs
 
 # Tool invocations
-VRS_cv8.elf: $(OBJS) $(USER_OBJS) D:\Skola\STU-fei\1.Ing\1.semester\VRS\VRS_cv8\STM32F303K8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "VRS_cv8.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Skola\STU-fei\1.Ing\1.semester\VRS\VRS_cv8\STM32F303K8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="VRS_cv8.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+VRS_cv8.elf: $(OBJS) $(USER_OBJS) D:\Tomas\ING\Vnorene_RS\GIT\zad8\VRS_cv8\STM32F303K8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "VRS_cv8.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Tomas\ING\Vnorene_RS\GIT\zad8\VRS_cv8\STM32F303K8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="VRS_cv8.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

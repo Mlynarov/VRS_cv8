@@ -70,6 +70,7 @@ void setEight(void);
 void setNine(void);
 void setZero(void);
 
+void setLine(void);
 void setDot(void);
 
 
