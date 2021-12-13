@@ -12,30 +12,33 @@ uint8_t direction = 0;
 
 void updateDisplay(){
 	char displayString[] = "MICHAL MOLnAr 98352";
-	resetAllDigits();
-	switch(updateDigit){
-		case 1:
-			DIGIT_1_ON;
-			resetAllSegments();
-			displayLetter(displayString[displayTextPos]);
-			break;
-		case 2:
-			DIGIT_2_ON;
-			resetAllSegments();
-			displayLetter(displayString[displayTextPos+1]);
-			break;
-		case 3:
-			DIGIT_3_ON;
-			resetAllSegments();
-			displayLetter(displayString[displayTextPos+2]);
-			break;
-		case 4:
-			DIGIT_4_ON;
-			resetAllSegments();
-			displayLetter(displayString[displayTextPos+3]);
-			break;
+	for(int i = 1; i<5; i++){
+		switch(updateDigit){
+				case 1:
+					DIGIT_1_ON;
+					resetAllSegments();
+					displayLetter(displayString[displayTextPos]);
+					break;
+				case 2:
+					DIGIT_2_ON;
+					resetAllSegments();
+					displayLetter(displayString[displayTextPos+1]);
+					break;
+				case 3:
+					DIGIT_3_ON;
+					resetAllSegments();
+					displayLetter(displayString[displayTextPos+2]);
+					break;
+				case 4:
+					DIGIT_4_ON;
+					resetAllSegments();
+					displayLetter(displayString[displayTextPos+3]);
+					break;
+			}
+			updateDigit = (updateDigit < 4) ? updateDigit+1 : 1;
+			LL_mDelay(2);
+			resetAllDigits();
 	}
-	updateDigit = (updateDigit < 4) ? updateDigit+1 : 1;
 
 }
 
@@ -45,9 +48,11 @@ void shiftDisplayText(){
 	}
 	else if(displayTextPos >= (20-4-1) && direction == 0){
 		direction = 1;
+		displayTextPos = displayTextPos-1;
 	}
 	else if(displayTextPos <= 0 && direction == 1){
 		direction = 0;
+		displayTextPos = displayTextPos+1;
 	}
 	else if(displayTextPos > 0 && direction == 1){
 		displayTextPos = displayTextPos-1;
@@ -184,7 +189,6 @@ void displayLetter(char letter){
 		case '0':
 			setZero();
 			break;
-
 		default:
 			setDot();
 			break;
