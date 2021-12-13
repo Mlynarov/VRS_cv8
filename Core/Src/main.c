@@ -93,7 +93,13 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+  LL_TIM_EnableIT_CC2(TIM2);
+  LL_TIM_EnableCounter(TIM2);
+  LL_TIM_EnableIT_CC2(TIM3);
+  LL_TIM_EnableCounter(TIM3);
+
   resetAllDigits();
   /* USER CODE END 2 */
 
@@ -101,10 +107,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  DIGIT_1_ON;
-	  resetAllSegments();
-	  setd();
-	  DIGIT_2_ON;
 
     /* USER CODE END WHILE */
 

@@ -205,11 +205,32 @@ void SysTick_Handler(void)
 void TIM2_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM2_IRQn 0 */
+	if(LL_TIM_IsActiveFlag_UPDATE(TIM2)){
+		shiftDisplayText();
+	}
 
+	LL_TIM_ClearFlag_UPDATE(TIM2);
   /* USER CODE END TIM2_IRQn 0 */
   /* USER CODE BEGIN TIM2_IRQn 1 */
 
   /* USER CODE END TIM2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM3 global interrupt.
+  */
+void TIM3_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM3_IRQn 0 */
+	if(LL_TIM_IsActiveFlag_UPDATE(TIM3)){
+		updateDisplay();
+	}
+
+	LL_TIM_ClearFlag_UPDATE(TIM3);
+  /* USER CODE END TIM3_IRQn 0 */
+  /* USER CODE BEGIN TIM3_IRQn 1 */
+
+  /* USER CODE END TIM3_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

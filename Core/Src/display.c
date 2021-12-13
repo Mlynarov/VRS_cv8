@@ -6,6 +6,190 @@
  */
 
 #include "display.h"
+uint8_t updateDigit = 1;
+uint8_t displayTextPos = 0;
+uint8_t direction = 0;
+
+void updateDisplay(){
+	char displayString[] = "MICHAL MOLnAr 98352";
+	resetAllDigits();
+	switch(updateDigit){
+		case 1:
+			DIGIT_1_ON;
+			resetAllSegments();
+			displayLetter(displayString[displayTextPos]);
+			break;
+		case 2:
+			DIGIT_2_ON;
+			resetAllSegments();
+			displayLetter(displayString[displayTextPos+1]);
+			break;
+		case 3:
+			DIGIT_3_ON;
+			resetAllSegments();
+			displayLetter(displayString[displayTextPos+2]);
+			break;
+		case 4:
+			DIGIT_4_ON;
+			resetAllSegments();
+			displayLetter(displayString[displayTextPos+3]);
+			break;
+	}
+	updateDigit = (updateDigit < 4) ? updateDigit+1 : 1;
+
+}
+
+void shiftDisplayText(){
+	if(displayTextPos < (20-4-1) && direction == 0){
+		displayTextPos = displayTextPos+1;
+	}
+	else if(displayTextPos >= (20-4-1) && direction == 0){
+		direction = 1;
+	}
+	else if(displayTextPos <= 0 && direction == 1){
+		direction = 0;
+	}
+	else if(displayTextPos > 0 && direction == 1){
+		displayTextPos = displayTextPos-1;
+	}
+}
+
+void displayLetter(char letter){
+	switch(letter){
+		case 'A':
+			setA();
+			break;
+		case 'a':
+			seta();
+			break;
+		case 'b':
+			setb();
+			break;
+		case 'C':
+			setC();
+			break;
+		case 'c':
+			setc();
+			break;
+		case 'd':
+			setd();
+			break;
+		case 'E':
+			setE();
+			break;
+		case 'F':
+			setF();
+			break;
+		case 'G':
+			setG();
+			break;
+		case 'H':
+			setH();
+			break;
+		case 'h':
+			seth();
+			break;
+		case 'I':
+			setI();
+			break;
+		case 'J':
+			setJ();
+			break;
+		case 'K':
+			setK();
+			break;
+		case 'L':
+			setL();
+			break;
+		case 'M':
+			setM();
+			break;
+		case 'n':
+			setn();
+			break;
+		case 'O':
+			setO();
+			break;
+		case 'o':
+			seto();
+			break;
+		case 'P':
+			setP();
+			break;
+		case 'q':
+			setq();
+			break;
+		case 'r':
+			setr();
+			break;
+		case 'S':
+			setS();
+			break;
+		case 't':
+			sett();
+			break;
+		case 'U':
+			setU();
+			break;
+		case 'u':
+			setu();
+			break;
+		case 'V':
+			setV();
+			break;
+		case 'W':
+			setW();
+			break;
+		case 'X':
+			setX();
+			break;
+		case 'y':
+			sety();
+			break;
+		case 'Z':
+			setZ();
+			break;
+		case ' ':
+			resetAllSegments();
+			break;
+
+
+		case '1':
+			setOne();
+			break;
+		case '2':
+			setTwo();
+			break;
+		case '3':
+			setThree();
+			break;
+		case '4':
+			setFour();
+			break;
+		case '5':
+			setFive();
+			break;
+		case '6':
+			setSix();
+			break;
+		case '7':
+			setSeven();
+			break;
+		case '8':
+			setEight();
+			break;
+		case '9':
+			setNine();
+			break;
+		case '0':
+			setZero();
+			break;
+
+		default:
+			setDot();
+			break;
+	}
+}
 
 void setAllSegments(void){
 	LL_GPIO_ResetOutputPin(GPIOA, segmentA_Pin);
@@ -382,10 +566,10 @@ void setThree(void){
 	LL_GPIO_ResetOutputPin(GPIOA, segmentB_Pin);
 	LL_GPIO_ResetOutputPin(GPIOA, segmentC_Pin);
 	LL_GPIO_ResetOutputPin(GPIOB, segmentD_Pin);
+	LL_GPIO_ResetOutputPin(GPIOB, segmentG_Pin);
 	//reset
 	LL_GPIO_SetOutputPin(GPIOA, segmentE_Pin);
 	LL_GPIO_SetOutputPin(GPIOA, segmentF_Pin);
-	LL_GPIO_SetOutputPin(GPIOB, segmentG_Pin);
 }
 void setFour(void){
 	LL_GPIO_ResetOutputPin(GPIOA, segmentB_Pin);
