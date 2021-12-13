@@ -102,8 +102,9 @@ int main(void)
   while (1)
   {
 	  DIGIT_1_ON;
-	  DIGIT_2_ON;
 	  resetAllSegments();
+	  setd();
+	  DIGIT_2_ON;
 
     /* USER CODE END WHILE */
 
